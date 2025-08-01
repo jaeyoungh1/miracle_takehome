@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# Miracle Takehome
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A customizable dashboard application for visualizing clinical trial data. Users can explore predefined charts comparing data from ClinicalTrials.gov and EudraCT, and build their own dashboards by rearranging and persisting chart layouts.
+
+## Architecture
+
+App.tsx
+├── BrowserRouter
+│   └── Sidebar (layout wrapper)
+│       └── Routes (defined via React Router)
+│           ├── /                  → <HomePage />
+│           ├── /charts           → <Charts />
+│           ├── /dashboard/default→ <Dashboard /> (with default layout)
+│           └── /dashboard/:id    → <Dashboard /> (custom layout)
+
+| Path                 | Component   | Description                            |
+| -------------------- | ----------- | -------------------------------------- |
+| `/`                  | `HomePage`  | Landing page                           |
+| `/charts`            | `Charts`    | Displays a list of all charts          |
+| `/dashboard/default` | `Dashboard` | Default read-only layout               |
+| `/dashboard/:id`     | `Dashboard` | Editable custom dashboard layout by ID |
+
 
 ## Available Scripts
 
