@@ -8,6 +8,7 @@ import {
   YAxis,
   Bar,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 export function GenderDistributionChart({
@@ -16,15 +17,16 @@ export function GenderDistributionChart({
   chartTitle,
 }: ChartProps) {
   return (
-    <BarChart data={data} width={800}
-        height={400}>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="gender" />
-        <YAxis width={150} />
+        <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="USA" fill="#8884d8" />
-        <Bar dataKey="EU" fill="#82ca9d" />
+        <Bar dataKey="USA" fill="#7B61FF" />
+        <Bar dataKey="EU" fill="#3EC6B6" />
       </BarChart>
+    </ResponsiveContainer>
   );
 }

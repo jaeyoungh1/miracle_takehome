@@ -8,15 +8,17 @@ import {
   YAxis,
   Line,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
-export function StudiesOverTimeChart({ data, chartId, chartTitle }: ChartProps) {
+export function StudiesOverTimeChart({
+  data,
+  chartId,
+  chartTitle,
+}: ChartProps) {
   return (
-    <LineChart
-        data={data}
-        width={800}
-        height={400}
-      >
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="year" />
         <YAxis />
@@ -25,10 +27,11 @@ export function StudiesOverTimeChart({ data, chartId, chartTitle }: ChartProps) 
         <Line
           type="monotone"
           dataKey="USA"
-          stroke="#8884d8"
+          stroke="#7B61FF"
           name="USA Trials"
         />
-        <Line type="monotone" dataKey="EU" stroke="#82ca9d" name="EU Trials" />
+        <Line type="monotone" dataKey="EU" stroke="#3EC6B6" name="EU Trials" />
       </LineChart>
+    </ResponsiveContainer>
   );
 }

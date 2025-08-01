@@ -3,27 +3,24 @@ import React from "react";
 import {
   LineChart,
   Line,
-  CartesianGrid,
   Tooltip,
   XAxis,
   YAxis,
-  Bar,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
-export function TrialOverTimeChart({
-  data,
-  chartId,
-  chartTitle,
-}: ChartProps) {
+export function TrialOverTimeChart({ data, chartId, chartTitle }: ChartProps) {
   return (
-    <LineChart data={data}  width={600} height={600}>
-    <XAxis dataKey="year" />
-    <YAxis />
-    <Tooltip />
-    <Legend />
-    <Line type="monotone" dataKey="USA" stroke="#8884d8" strokeWidth={2} />
-    <Line type="monotone" dataKey="EU" stroke="#82ca9d" strokeWidth={2} />
-  </LineChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data}>
+        <XAxis dataKey="year" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line type="monotone" dataKey="USA" stroke="#7B61FF" strokeWidth={2} />
+        <Line type="monotone" dataKey="EU" stroke="#3EC6B6" strokeWidth={2} />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }

@@ -8,12 +8,9 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
+
+import { arrayMove, SortableContext, useSortable } from "@dnd-kit/sortable";
+import { rectSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FilterPanel } from "../FilterPanel/filterPanel";
 
@@ -31,6 +28,9 @@ const SortableChartItem: React.FC<{
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+    zIndex: transform ? 50 : "auto",
+    boxShadow: transform ? "0 4px 12px rgba(0,0,0,0.1)" : undefined,
+    cursor: "grab",
   };
 
   return (
@@ -104,7 +104,9 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
     <div className="p-4">
       <FilterPanel />
       <div className="flex items-center justify-between mb-4 gap-2">
-        <h2 className="text-xl font-semibold">Custom Dashboard: {dashboardId}</h2>
+        <h2 className="text-xl font-semibold">
+          Custom Dashboard: {dashboardId}
+        </h2>
         <div className="flex gap-2">
           <select
             value={chartToAdd}
@@ -121,7 +123,7 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
           <button
             onClick={handleAddChart}
             disabled={!chartToAdd}
-            className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50"
+            className="px-3 py-1 bg-neutral text-white rounded hover:bg-banner disabled:opacity-50"
           >
             + Add Chart
           </button>
@@ -133,11 +135,8 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
         collisionDetection={closestCenter}
         onDragEnd={handleDragEnd}
       >
-        <SortableContext
-          items={selectedCharts}
-          strategy={verticalListSortingStrategy}
-        >
-          <div className="flex flex-col gap-4">
+        <SortableContext items={selectedCharts} strategy={rectSortingStrategy}>
+          <div className="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-2 gap-4">
             {selectedCharts.map((chartKey) => {
               const chartMeta = chartRegistry[chartKey];
               if (!chartMeta) return null;
@@ -146,10 +145,10 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
 
               return (
                 <SortableChartItem key={chartKey} chartKey={chartKey}>
-                  <div className="relative border p-4 rounded shadow bg-white">
+                  <div className="relative border p-6 rounded shadow bg-white">
                     <button
                       onClickCapture={() => handleRemoveChart(chartKey)}
-                      className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                      className="absolute top-0 right-1 p-1 text-red-500 hover:text-red-700 text-xl"
                     >
                       ×
                     </button>

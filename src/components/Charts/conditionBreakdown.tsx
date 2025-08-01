@@ -1,10 +1,12 @@
 import { ChartProps } from "./utils/charts.types";
 import React from "react";
-import { PieChart, Pie, Tooltip, Cell, Legend } from "recharts";
+import { PieChart, Pie, Tooltip, Cell, Legend, ResponsiveContainer } from "recharts";
 
 export function ConditionBreakdownChart({ data, chartId, chartTitle }: ChartProps) {
   return (
-    <PieChart width={600} height={600}>
+    <ResponsiveContainer width="100%" height="100%">
+    
+    <PieChart>
         <Pie
           dataKey="value"
           isAnimationActive={false}
@@ -12,22 +14,23 @@ export function ConditionBreakdownChart({ data, chartId, chartTitle }: ChartProp
           cx="33%"
           cy="50%"
           outerRadius={120}
-          fill="#8884d8"
+          fill="#7B61FF"
           // label={({ name }) => name}
         />
         <Pie
           dataKey="value"
           isAnimationActive={false}
           data={data[1]}
-          cx="80%"
+          cx="70%"
           cy="50%"
           outerRadius={120}
           innerRadius={40}
-          fill="#82ca9d"
+          fill="#3EC6B6"
         />
         <Legend />
         <Tooltip />
       </PieChart>
+      </ResponsiveContainer>
   );
 }
 

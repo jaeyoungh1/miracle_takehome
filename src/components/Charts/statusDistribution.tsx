@@ -8,6 +8,7 @@ import {
   YAxis,
   Bar,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 export function StatusDistributionChart({
@@ -16,13 +17,15 @@ export function StatusDistributionChart({
   chartTitle,
 }: ChartProps) {
   return (
-    <BarChart data={data} layout="vertical" width={800} height={400}>
-      <XAxis type="number" />
-      <YAxis dataKey="status" type="category" width={200} />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="USA" fill="#8884d8" />
-      <Bar dataKey="EU" fill="#82ca9d" />
-    </BarChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={data} layout="vertical">
+        <XAxis type="number" />
+        <YAxis dataKey="status" type="category" width={200} />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="USA" fill="#7B61FF" />
+        <Bar dataKey="EU" fill="#3EC6B6" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 }

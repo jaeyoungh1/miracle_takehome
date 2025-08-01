@@ -50,7 +50,7 @@ const Sidebar = () => {
       <div
         className={`${
           isOpen ? "w-64" : "w-16"
-        } bg-gray-800 text-white transition-all duration-300 p-4 flex flex-col`}
+        } bg-banner text-white transition-all duration-300 p-4 flex flex-col`}
       >
         {/* Toggle Button */}
         <button
@@ -100,12 +100,12 @@ const Sidebar = () => {
                       to={`/dashboard/${id}`}
                       className="block hover:underline flex-grow"
                     >
-                      Layout {id}
+                      Custom Dashboard {id}
                     </NavLink>
                     <button
                       onClick={() => {
                         const confirmDelete = window.confirm(
-                          `Are you sure you want to delete Layout ${id}?`
+                          `Are you sure you want to delete Custom Dashboard ${id}?`
                         );
                         if (!confirmDelete) return;
 
@@ -125,7 +125,7 @@ const Sidebar = () => {
 
                 <button
                   onClick={handleCreateNewLayout}
-                  className="flex items-center text-sm text-blue-300 hover:underline mt-1"
+                  className="flex items-center text-sm text-primary hover:underline mt-1"
                 >
                   <Plus size={16} className="mr-1" />
                   Create New Layout

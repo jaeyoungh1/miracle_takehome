@@ -3,12 +3,12 @@
 A customizable dashboard application for visualizing clinical trial data. Users can explore predefined charts comparing data from ClinicalTrials.gov and EudraCT, and build their own dashboards by rearranging and persisting chart layouts.
 
 ## Architecture
-
+```
 App.tsx
 ├── BrowserRouter
 │   └── Sidebar (layout wrapper)
 │       └── Routes (defined via React Router)
-│           ├── /                  → <HomePage />
+│           ├── /                 → <HomePage />
 │           ├── /charts           → <Charts />
 │           ├── /dashboard/default→ <Dashboard /> (with default layout)
 │           └── /dashboard/:id    → <Dashboard /> (custom layout)
@@ -20,6 +20,11 @@ App.tsx
 | `/dashboard/default` | `Dashboard` | Default read-only layout               |
 | `/dashboard/:id`     | `Dashboard` | Editable custom dashboard layout by ID |
 
+```
+
+## Styling
+
+Tailwind CSS was chosen as the styling framework for this project due to its styling consistency and efficiency. 
 
 ## Available Scripts
 
