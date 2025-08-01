@@ -15,7 +15,6 @@ export function ConditionBreakdownChart({ data, chartId, chartTitle }: ChartProp
           cy="50%"
           outerRadius={120}
           fill="#7B61FF"
-          // label={({ name }) => name}
         />
         <Pie
           dataKey="value"
@@ -27,7 +26,6 @@ export function ConditionBreakdownChart({ data, chartId, chartTitle }: ChartProp
           innerRadius={40}
           fill="#3EC6B6"
         />
-        <Legend />
         <Tooltip />
       </PieChart>
       </ResponsiveContainer>

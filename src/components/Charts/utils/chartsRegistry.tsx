@@ -58,10 +58,10 @@ export const chartRegistry: Record<string, ChartMeta> = {
     chartTitle: "Trials Over Time",
     component: TrialOverTimeChart,
   },
-  AgeDistributionChart: {
+  ageDistributionChart: {
     chartId: "age-distribution",
     chartTitle: "Trials by Age Distribution",
-    component: SponsorBreakdownChart,
+    component: AgeDistributionChart,
   },
   studiesOverTimeChart: {
     chartId: "studies-over-time",

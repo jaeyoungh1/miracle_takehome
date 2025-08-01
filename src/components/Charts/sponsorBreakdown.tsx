@@ -21,9 +21,8 @@ export function SponsorBreakdownChart({
       <BarChart layout="vertical" data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis type="number" allowDecimals={false} />
-        <YAxis dataKey="name" type="category" width={150} />
+        <YAxis dataKey="name" tick={false} type="category" />
         <Tooltip />
-        <Legend />
         <Bar dataKey="USA" fill="#7B61FF" name="USA Trials" />
         <Bar dataKey="EU" fill="#3EC6B6" name="EU Trials" />
       </BarChart>

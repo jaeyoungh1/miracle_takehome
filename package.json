@@ -15,6 +15,7 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
+    "csv-parser": "^3.2.0",
     "lucide-react": "^0.536.0",
     "react": "^19.1.1",
     "react-day-picker": "^9.8.1",

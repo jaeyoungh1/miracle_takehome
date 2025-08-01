@@ -1,7 +1,7 @@
 import React from "react";
 import { Filters } from "../../../context/filterContext";
-import ctgData from "../../../data/ctg-studies";
-import EudraCTData from "../../../data/trials-summary";
+import EudraCTData from "../../../data/trials-summary.mjs";
+import ctgData from "../../../data/us-data.mjs"
 
 import {
   countTrials,
@@ -69,7 +69,7 @@ function applyFilters(
 export function useChartData(chartId: string, filters?: Filters) {
   let result: any[] = [];
   const { ctg, eu } = applyFilters(ctgData, EudraCTData, filters);
-  
+    
   switch (chartId) {
     case "count-trials":
       return countTrials(ctg, eu);

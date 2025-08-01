@@ -7,6 +7,7 @@ export function AgeDistributionChart({
   chartId,
   chartTitle,
 }: ChartProps) {
+  console.log('data', data)
   return (
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
@@ -23,8 +24,8 @@ export function AgeDistributionChart({
             data={data[1]}
             dataKey="value"
             nameKey="name"
-            cx={450}
-            cy={400}
+            cx="75%"
+            cy="50%"
             outerRadius={120}
             innerRadius={40}
             fill="#3EC6B6"

@@ -10,6 +10,8 @@ export function breakdownByConditions(dataUSA: Array<any>, dataEU: Array<any>) {
     const conditionNormalizationMap: Record<string, string> = {
       "Type 1 Diabetes": "Type 1 Diabetes",
       "Type 1 Diabetes (T1D)": "Type 1 Diabetes",
+      "Type 2 Diabetes": "Type 2 Diabetes",
+      "Diabetes Mellitus": "Type 2 Diabetes",
       // Add more normalization rules here as needed
     };
     return conditionNormalizationMap[condition] || condition;
@@ -27,7 +29,7 @@ export function breakdownByConditions(dataUSA: Array<any>, dataEU: Array<any>) {
   const usaConditions: string[] = [];
   dataUSA.forEach((trial) => {
     const conditions =
-      trial.protocolSection?.conditionsModule?.conditions || [];
+      trial.Conditions || [];
     conditions.forEach((condition: string) => usaConditions.push(condition));
   });
 
@@ -64,7 +66,7 @@ export function breakdownBySponsor(dataUSA: Array<any>, dataEU: Array<any>) {
   // USA Dataset
   for (const study of dataUSA) {
     const sponsor =
-      study.protocolSection?.sponsorCollaboratorsModule?.leadSponsor?.name;
+      study.Sponsor;
     if (sponsor) {
       if (!sponsorMap[sponsor]) sponsorMap[sponsor] = { name: sponsor };
       sponsorMap[sponsor].USA = (sponsorMap[sponsor].USA || 0) + 1;
@@ -98,7 +100,7 @@ function getTop10SponsorsUSA(dataUSA: any[]) {
 
   dataUSA.forEach((trial) => {
     const sponsorName =
-      trial?.protocolSection?.sponsorCollaboratorsModule?.leadSponsor?.name;
+      trial.Sponsor;
     if (sponsorName) {
       sponsorCounts[sponsorName] = (sponsorCounts[sponsorName] || 0) + 1;
     }
@@ -176,7 +178,7 @@ export function getStatusChartData(dataUSA: any[], dataEU: any[]) {
   // Count overallStatus from USA data
   for (const trial of dataUSA) {
     const status =
-      trial.protocolSection?.statusModule?.overallStatus?.trim() || "Unknown";
+      trial["Study Status"].trim() || "Unknown";
     usaCounts[status] = (usaCounts[status] || 0) + 1;
   }
 
@@ -211,7 +213,7 @@ export function getTopConditionChartData(
   // Count U.S. conditions
   for (const trial of dataUSA) {
     const conditions: string[] =
-      trial.protocolSection?.conditionsModule?.conditions || [];
+      trial.Conditions || [];
     for (const cond of conditions) {
       const key = cond.trim();
       usaCounts[key] = (usaCounts[key] || 0) + 1;
@@ -249,7 +251,7 @@ export function getTrialsOverTimeChartData(dataUSA: any[], dataEU: any[]) {
 
   // Count USA trials by year
   for (const trial of dataUSA) {
-    const dateStr = trial.protocolSection?.statusModule?.startDateStruct?.date;
+    const dateStr = trial["Start Date"];
     if (dateStr) {
       const year = dateStr.slice(0, 4);
       usaCounts[year] = (usaCounts[year] || 0) + 1;
@@ -294,7 +296,7 @@ export function getAgeDistribution(dataUSA: Array<any>, dataEU: Array<any>) {
 
   const countsUSA: Record<string, number> = {};
   for (const record of dataUSA) {
-    const stdAges = record?.protocolSection?.eligibilityModule?.stdAges ?? [];
+    const stdAges = record.Age.split(',');
     for (const age of stdAges) {
       const norm = normalize(age);
       countsUSA[norm] = (countsUSA[norm] ?? 0) + 1;
@@ -345,7 +347,7 @@ export function getStudiesOverTimeData(
 ) {
   const usaCounts = getStudiesPerYear(
     dataUSA,
-    (item) => item?.protocolSection?.statusModule?.startDateStruct?.date ?? null
+    (item) => item["Start Date"] ?? null
   );
 
   const euCounts = getStudiesPerYear(
@@ -374,7 +376,7 @@ export function getGenderChartData(dataUSA: any[], dataEU: any[]) {
 
   // Count genders in USA dataset
   for (const trial of dataUSA) {
-    const sex = trial.protocolSection?.eligibilityModule?.sex?.toUpperCase();
+    const sex = trial.Sex?.toUpperCase();
     if (sex === "MALE") maleUSA++;
     else if (sex === "FEMALE") femaleUSA++;
     else if (sex === "ALL") allUSA++;

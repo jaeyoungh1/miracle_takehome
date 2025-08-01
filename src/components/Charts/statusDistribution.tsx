@@ -20,9 +20,8 @@ export function StatusDistributionChart({
     <ResponsiveContainer width="100%" height="100%">
       <BarChart data={data} layout="vertical">
         <XAxis type="number" />
-        <YAxis dataKey="status" type="category" width={200} />
+        <YAxis tick={false} type="category" />
         <Tooltip />
-        <Legend />
         <Bar dataKey="USA" fill="#7B61FF" />
         <Bar dataKey="EU" fill="#3EC6B6" />
       </BarChart>
