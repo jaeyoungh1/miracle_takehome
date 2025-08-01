@@ -22,9 +22,15 @@ App.tsx
 
 ```
 
-## Styling
+## Tools Used
 
-Tailwind CSS was chosen as the styling framework for this project due to its styling consistency and efficiency. 
+Signifitant libraries utilized for this application include Recharts to visualize data, and Tailwind CSS was chosen as the styling framework for this project due to its styling consistency and efficiency. 
+
+ChatGPT was also used to help develop chart components, create functions to parse/organize data, and help implement Tailwind styling in this application.
+
+## Starting the Application
+
+Run `npm install` to install all dependencies
 
 ## Available Scripts
 
