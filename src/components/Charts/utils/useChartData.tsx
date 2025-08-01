@@ -1,7 +1,5 @@
 import React from "react";
-import { useFilters } from "../../../context/filterContext";
 import { Filters } from "../../../context/filterContext";
-
 import ctgData from "../../../data/ctg-studies";
 import EudraCTData from "../../../data/trials-summary";
 

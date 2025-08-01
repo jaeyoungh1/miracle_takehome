@@ -13,6 +13,7 @@ import { arrayMove, SortableContext, useSortable } from "@dnd-kit/sortable";
 import { rectSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { FilterPanel } from "../FilterPanel/filterPanel";
+import { useFilters } from "../../context/filterContext";
 
 type CustomLayoutProps = {
   dashboardId: string;
@@ -54,6 +55,7 @@ const SortableChartItem: React.FC<{
 const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
   const [selectedCharts, setSelectedCharts] = useState<string[]>([]);
   const [chartToAdd, setChartToAdd] = useState<string>("");
+  const { filters } = useFilters();
 
   useEffect(() => {
     const saved = localStorage.getItem(`dashboard-${dashboardId}`);
@@ -156,6 +158,7 @@ const CustomLayout: React.FC<CustomLayoutProps> = ({ dashboardId }) => {
                       chartId={chartId}
                       chartKey={chartKey}
                       chartTitle={chartTitle}
+                      filters={filters}
                     />
                   </div>
                 </SortableChartItem>

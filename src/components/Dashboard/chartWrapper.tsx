@@ -1,21 +1,21 @@
 import React from "react";
 import { chartRegistry } from "../Charts/utils/chartsRegistry";
 import { useChartData } from "../Charts/utils/useChartData";
-import { useFilters } from "../../context/filterContext";
-import { ResponsiveContainer } from "recharts";
+import { Filters } from "../../context/filterContext";
 interface ChartWrapperProps {
   chartId: string;
   chartKey: string;
   chartTitle?: string;
+  filters?: Filters
 }
 
 const ChartWrapper: React.FC<ChartWrapperProps> = ({
   chartId,
   chartKey,
   chartTitle,
+  filters
 }) => {
   const chartMeta = chartRegistry[chartKey];
-  const { filters } = useFilters();
 
   const data = useChartData(chartId, filters);
 

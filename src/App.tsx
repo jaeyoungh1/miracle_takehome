@@ -1,16 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./components/HomePage/homePage";
-import FontToggle from "./components/HomePage/fontToggle";
 import Charts from "./components/Charts/allCharts";
 import Dashboard from "./components/Dashboard/dashboard";
 import Sidebar from "./components/Sidebar";
-import { FilterProvider } from "./context/filterContext";
 
 function App() {
   return (
-    <FilterProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Sidebar />}>
@@ -22,7 +18,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </FilterProvider>
   );
 }
 
