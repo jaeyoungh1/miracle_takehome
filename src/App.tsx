@@ -4,9 +4,11 @@ import HomePage from "./components/HomePage/homePage";
 import Charts from "./components/Charts/allCharts";
 import Dashboard from "./components/Dashboard/dashboard";
 import Sidebar from "./components/Sidebar";
+import { FilterProvider } from "./context/filterContext";
 
 function App() {
   return (
+    <FilterProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Sidebar />}>
@@ -18,6 +20,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      </FilterProvider>
   );
 }
 
